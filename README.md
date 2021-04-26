@@ -109,3 +109,11 @@ evolve_activation_layer = ['relu', 'logistic']  # length must equal that of hidd
 evolve_recurrent_layer = None # do not evolve activation 
 evolve_recurrent_layer = ['relu', 'logistic']  # length must equal that of hidden layers
 ```
+### Predict
+- input : (numpy array) the input, X, vector to predict upon (number of columns must equal previously inputted number of inputs)
+
+- avg : (bool) if True, predict using the average of the best three unique models; if False, predict using the best model
+
+### get_score
+Returns a list of scores from either the best model or average of the best three unique models. In order, returns [R^2, MAE, MSE]; if links are used, appends [num_links_used, total_possible_links] where both of those values are a two element list, first entry denoting links for weights and biases of hidden layer, second for links of recurrent layer
+- avg : (bool) if True, return average of best three unique models; if False, return scores for best model
