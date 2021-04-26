@@ -1,6 +1,6 @@
 # NeuroEvolution
 ## Purpose ##
-NeuroEvolution is a Python Implementation of an elementary neuro-evolution with the capabilities of evolving the weights of a fixed neural network, links for each weight, a recurrent layer, and activation functions for each layer. 
+NeuroEvolution is a Python Implementation of an elementary TTWEANN with the capabilities of evolving the weights of a fixed neural network, links for each weight, a recurrent layer, and activation functions for each layer. 
 
 - A link is an associated binary value, 0 or 1, which allows the network to only allow certain nodes to influence the model
 
