@@ -5,6 +5,7 @@ NeuroEvolution is a Python Implementation of an elementary TWEANN with the capab
 - A link is an associated binary value, 0 or 1, which allows the network to only allow certain nodes to influence the model
 
 ## Documentation
+Note that no error checking has been implemented so if it fails; your inputs for the arguments are incorrect.
 - There are currently 7 activation functions available: 'relu', 'tanh', 'logistic', 'unit', 'softmax', 'gaussian', 'purlin'
     - relu: max(0,x)
     - tanh: (e^x - e^-x)/(e ^x + e^-x)
