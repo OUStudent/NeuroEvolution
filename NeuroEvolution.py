@@ -132,46 +132,46 @@ class NeuroEvolution:
             if not initialize:
                 return
 
-            limit = np.sqrt(6/(num_output+num_output))
-
+            limit_w = np.sqrt(6/(num_output+num_output))
+            limit_l = limit_w / 4
             if use_recurrent:
-                self.recurrent_weight = np.random.uniform(-limit, limit, layer_nodes[len(layer_nodes)-1] * layer_nodes[len(layer_nodes)-1]).reshape(layer_nodes[len(layer_nodes)-1],
+                self.recurrent_weight = np.random.uniform(-limit_w, limit_w, layer_nodes[len(layer_nodes)-1] * layer_nodes[len(layer_nodes)-1]).reshape(layer_nodes[len(layer_nodes)-1],
                                                                                           layer_nodes[len(layer_nodes)-1])
-                self.recurrent_bias = np.random.uniform(-limit, limit, layer_nodes[len(layer_nodes)-1])
+                self.recurrent_bias = np.random.uniform(-limit_w, limit_w, layer_nodes[len(layer_nodes)-1])
                 if use_links:
-                    self.recurrent_w_link = np.random.uniform(-limit, limit, layer_nodes[len(layer_nodes)-1]*layer_nodes[len(layer_nodes)-1]).reshape(layer_nodes[len(layer_nodes)-1],layer_nodes[len(layer_nodes)-1])
-                    self.recurrent_b_link = np.random.uniform(-limit, limit, layer_nodes[len(layer_nodes) - 1])
+                    self.recurrent_w_link = np.random.uniform(-limit_l, limit_w, layer_nodes[len(layer_nodes)-1]*layer_nodes[len(layer_nodes)-1]).reshape(layer_nodes[len(layer_nodes)-1],layer_nodes[len(layer_nodes)-1])
+                    self.recurrent_b_link = np.random.uniform(-limit_l, limit_w, layer_nodes[len(layer_nodes) - 1])
 
 
             self.layers_weights.append(
-                np.random.uniform(-limit, limit, num_input * layer_nodes[0]).reshape(num_input, layer_nodes[0]))
+                np.random.uniform(-limit_w, limit_w, num_input * layer_nodes[0]).reshape(num_input, layer_nodes[0]))
 
-            self.biases_weights.append(np.random.uniform(-limit, limit, layer_nodes[0]))
+            self.biases_weights.append(np.random.uniform(-limit_w, limit_w, layer_nodes[0]))
 
             if use_links:
                 self.layers_links.append(
-                    np.random.uniform(-limit, limit, num_input * layer_nodes[0]).reshape(num_input, layer_nodes[0]))
+                    np.random.uniform(-limit_l, limit_w, num_input * layer_nodes[0]).reshape(num_input, layer_nodes[0]))
 
-                self.biases_links.append(np.random.uniform(-limit, limit, layer_nodes[0]))
+                self.biases_links.append(np.random.uniform(-limit_l, limit_w, layer_nodes[0]))
             for i in range(1, self.layer_count):
                 self.layers_weights.append(
-                    np.random.uniform(-limit, limit, layer_nodes[i - 1] * layer_nodes[i]).reshape(layer_nodes[i - 1],
+                    np.random.uniform(-limit_w, limit_w, layer_nodes[i - 1] * layer_nodes[i]).reshape(layer_nodes[i - 1],
                                                                                           layer_nodes[i]))
-                self.biases_weights.append(np.random.uniform(-limit, limit, layer_nodes[i]).reshape(1, layer_nodes[i]))
+                self.biases_weights.append(np.random.uniform(-limit_w, limit_w, layer_nodes[i]).reshape(1, layer_nodes[i]))
                 if use_links:
                     self.layers_links.append(
-                        np.random.uniform(-limit, limit, layer_nodes[i - 1] * layer_nodes[i]).reshape(layer_nodes[i - 1],
+                        np.random.uniform(-limit_l, limit_w, layer_nodes[i - 1] * layer_nodes[i]).reshape(layer_nodes[i - 1],
                                                                                                 layer_nodes[i]))
-                    self.biases_links.append(np.random.uniform(-limit, limit, layer_nodes[i]).reshape(1, layer_nodes[i]))
+                    self.biases_links.append(np.random.uniform(-limit_l, limit_w, layer_nodes[i]).reshape(1, layer_nodes[i]))
             self.layers_weights.append(
-                np.random.uniform(-limit, limit, layer_nodes[self.layer_count - 1] * num_output).reshape(
+                np.random.uniform(-limit_w, limit_w, layer_nodes[self.layer_count - 1] * num_output).reshape(
                     layer_nodes[self.layer_count - 1], num_output))
-            self.biases_weights.append(np.random.uniform(-limit, limit, num_output).reshape(1, num_output))
+            self.biases_weights.append(np.random.uniform(-limit_w, limit_w, num_output).reshape(1, num_output))
             if use_links:
                 self.layers_links.append(
-                    np.random.uniform(-limit, limit, layer_nodes[self.layer_count - 1] * num_output).reshape(
+                    np.random.uniform(-limit_l, limit_w, layer_nodes[self.layer_count - 1] * num_output).reshape(
                         layer_nodes[self.layer_count - 1], num_output))
-                self.biases_links.append(np.random.uniform(-limit, limit, num_output).reshape(1, num_output))
+                self.biases_links.append(np.random.uniform(-limit_l, limit_w, num_output).reshape(1, num_output))
 
         def predict(self, x):
             if self.use_recurrent:
